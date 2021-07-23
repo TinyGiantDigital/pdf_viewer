@@ -39,30 +39,30 @@ static NSString* kFileName = @"";
     }
     CGPDFDocumentRef SourcePDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourcePDFUrl);
     size_t numberOfPages = CGPDFDocumentGetNumberOfPages(SourcePDFDocument);
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *temporaryDirectory = [paths objectAtIndex:0];
-    NSString *filePathAndDirectory = [temporaryDirectory stringByAppendingPathComponent:kDirectory];
-    NSError *error;
+    // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    // NSString *temporaryDirectory = [paths objectAtIndex:0];
+    // NSString *filePathAndDirectory = [temporaryDirectory stringByAppendingPathComponent:kDirectory];
+    // NSError *error;
 
-    // Clear cache folder
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePathAndDirectory]) {
-        NSLog(@"[FlutterPluginPDFViewer] Removing old documents cache");
-        [[NSFileManager defaultManager] removeItemAtPath:filePathAndDirectory error:&error];
-    }
+    // // Clear cache folder
+    // if ([[NSFileManager defaultManager] fileExistsAtPath:filePathAndDirectory]) {
+    //     NSLog(@"[FlutterPluginPDFViewer] Removing old documents cache");
+    //     [[NSFileManager defaultManager] removeItemAtPath:filePathAndDirectory error:&error];
+    // }
 
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
-                                   withIntermediateDirectories:YES
-                                                    attributes:nil
-                                                         error:&error])
-    {
-        NSLog(@"Create directory error: %@", error);
-        return nil;
-    }
-    // Generate random file size for this document
+    // if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+    //                                withIntermediateDirectories:YES
+    //                                                 attributes:nil
+    //                                                      error:&error])
+    // {
+    //     NSLog(@"Create directory error: %@", error);
+    //     return nil;
+    // }
+    // // Generate random file size for this document
 
-    kFileName = [[NSUUID UUID] UUIDString];
+    // kFileName = [[NSUUID UUID] UUIDString];
     NSLog(@"[FlutterPluginPdfViewer] File has %zd pages", numberOfPages);
-    NSLog(@"[FlutterPluginPdfViewer] File will be saved in cache as %@", kFileName);
+    // NSLog(@"[FlutterPluginPdfViewer] File will be saved in cache as %@", kFileName);
     return [NSString stringWithFormat:@"%zd", numberOfPages];
 }
 
@@ -101,7 +101,8 @@ static NSString* kFileName = @"";
     UIGraphicsBeginPDFContextToFile(imageFilePath, sourceRect, nil);
     // Calculate resolution
     // Set DPI to 300
-    CGFloat dpi = 300.0 / 72.0;
+    // CGFloat dpi = 300.0 / 72.0;
+    CGFloat dpi = 1.5;
     CGFloat width = sourceRect.size.width * dpi;
     CGFloat height = sourceRect.size.height * dpi;
     UIGraphicsBeginImageContext(CGSizeMake(width, height));
