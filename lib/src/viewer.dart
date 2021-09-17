@@ -120,6 +120,7 @@ class _PDFViewerState extends State<PDFViewer> {
     _pages = List.filled(widget.document.count,null);
     // _loadAllPages();
     _loadPage();
+    _loadPageNext();
   }
 
   @override
@@ -153,6 +154,28 @@ class _PDFViewerState extends State<PDFViewer> {
       panLimit: widget.panLimit,
     );
     _pages![_pageNumber - 1] = data;
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  _loadPageNext() async {
+    if (_pageNumber >= ((_pages != null) ?_pages!.length : 0)) return;
+    if (_pages?[_pageNumber] != null) return;
+    setState(() {
+      _isLoading = true;
+    });
+    final data = await widget.document.get(
+      page: _pageNumber + 1,
+      onZoomChanged: onZoomChanged,
+      zoomSteps: widget.zoomSteps,
+      minScale: widget.minScale,
+      maxScale: widget.maxScale,
+      panLimit: widget.panLimit,
+    );
+    _pages?[_pageNumber] = data;
     if (mounted) {
       setState(() {
         _isLoading = false;
@@ -231,6 +254,7 @@ class _PDFViewerState extends State<PDFViewer> {
                 _pageNumber = page + 1;
               });
               _loadPage();
+               _loadPageNext();
               widget.onPageChanged?.call(page);
             },
             scrollDirection: widget.scrollDirection ?? Axis.horizontal,
