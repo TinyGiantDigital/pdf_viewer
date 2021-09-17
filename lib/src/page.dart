@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:advance_pdf_viewer/src/zoomable_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter/material.dart';
+
 
 /// A class to represent PDF page
 /// [imgPath], path of the image (pdf page)
@@ -63,27 +63,14 @@ class _PDFPageState extends State<PDFPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFFAFAFA),
-      decoration: null,
-      child: ZoomableWidget(
-        onZoomChanged: widget.onZoomChanged,
-        zoomSteps: widget.zoomSteps ?? 3,
-        minScale: widget.minScale ?? 1.0,
-        panLimit: widget.panLimit ?? 1.0,
-        maxScale: widget.maxScale ?? 5.0,
-        child: Container(
-            padding: EdgeInsets.all(10.0),
-            margin: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-              color: Color(0xFFFAFAFA),
-              boxShadow: [BoxShadow(
-                color: Colors.black.withOpacity(0.16),
-                blurRadius: 16,
-                offset: Offset(0,6)
-              )]
-            ),
-            child: Image(image: provider),
-          )
-      ));
+        decoration: null,
+        child: ZoomableWidget(
+          onZoomChanged: widget.onZoomChanged,
+          zoomSteps: widget.zoomSteps ?? 3,
+          minScale: widget.minScale ?? 1.0,
+          panLimit: widget.panLimit ?? 1.0,
+          maxScale: widget.maxScale ?? 5.0,
+          child: Image(image: provider),
+        ));
   }
 }

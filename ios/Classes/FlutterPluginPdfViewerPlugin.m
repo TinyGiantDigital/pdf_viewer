@@ -62,7 +62,7 @@ static NSString* kFileName = @"";
 
     kFileName = [[NSUUID UUID] UUIDString];
     NSLog(@"[FlutterPluginPdfViewer] File has %zd pages", numberOfPages);
-    // NSLog(@"[FlutterPluginPdfViewer] File will be saved in cache as %@", kFileName);
+    NSLog(@"[FlutterPluginPdfViewer] File will be saved in cache as %@", kFileName);
     return [NSString stringWithFormat:@"%zd", numberOfPages];
 }
 
@@ -101,8 +101,7 @@ static NSString* kFileName = @"";
     UIGraphicsBeginPDFContextToFile(imageFilePath, sourceRect, nil);
     // Calculate resolution
     // Set DPI to 300
-    // CGFloat dpi = 300.0 / 72.0;
-    CGFloat dpi = 1.5;
+    CGFloat dpi = 300.0 / 72.0;
     CGFloat width = sourceRect.size.width * dpi;
     CGFloat height = sourceRect.size.height * dpi;
     UIGraphicsBeginImageContext(CGSizeMake(width, height));
