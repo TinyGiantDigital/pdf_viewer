@@ -62,7 +62,7 @@ class _PDFPageState extends State<PDFPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFFAFAFA),
+      color: Color(0xffF6F6F7),
       decoration: null,
       child: ZoomableWidget(
         onZoomChanged: widget.onZoomChanged,
@@ -74,12 +74,7 @@ class _PDFPageState extends State<PDFPage> {
           padding: EdgeInsets.all(10.0),
           margin: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            color: Color(0xFFFAFAFA),
-            boxShadow: [BoxShadow(
-              color: Colors.black.withOpacity(0.16),
-              blurRadius: 16,
-              offset: Offset(0,6)
-            )]
+            color: Color(0xffF6F6F7),
           ),
           child: Image(image: provider),
         )

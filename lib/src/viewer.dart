@@ -242,6 +242,7 @@ class _PDFViewerState extends State<PDFViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF6F6F7),
       body: Stack(
         children: <Widget>[
           PageView.builder(
